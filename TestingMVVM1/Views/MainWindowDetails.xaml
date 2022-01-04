@@ -1,0 +1,90 @@
+﻿<Window x:Class="TestingMVVM1.Views.MainWindowDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestingMVVM1.Views"
+        mc:Ignorable="d"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" Height="750" Width="800">
+
+    <Grid Background="#5ccccc" >
+        <Border Background="White" BorderBrush="White"   CornerRadius="25" BorderThickness="10,10,10,10" Height="520" Width="650" Padding="10">
+            <StackPanel Background="White" Margin="0,-2.212,0,2.212"  >
+                <Grid Height="35">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0">
+                        <Button Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="Close_ProgramBtn">
+                            <materialDesign:PackIcon Kind="Power" Foreground="#FFA2A2A2" Width="25" Height="25" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Height="75">
+                    <StackPanel  HorizontalAlignment="Left"  Orientation="Horizontal" VerticalAlignment="Top" Margin="10,0,0,0">
+                        <Button Uid="0" Width="150" Content="Orders" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
+                        <Button Uid="1" Width="150" Content="Trucking" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
+                        <Button Uid="2" Width="150" Content="Adding a customer" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
+                        <Button Uid="3" Width="150" Content="main" Height="50" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF2196F3" Click="Button_Click"/>
+                    </StackPanel>
+                    <Grid x:Name="GridCursor" Width="150" Height="3" Background="#FF2196F3" HorizontalAlignment="Left" Margin="10 0" Opacity="0.75"/>
+                </Grid>
+
+
+
+
+                <Grid x:Name="GridMain" Height="300">
+                    <StackPanel Visibility="Hidden" x:Name="AddCustomer">
+                        <TextBox  x:Name="cust_AddName" materialDesign:HintAssist.Hint="customer name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox  x:Name="cust_AddCompnyName" materialDesign:HintAssist.Hint="Company Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox  x:Name="cust_Addid" materialDesign:HintAssist.Hint="ID Card" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox   x:Name="cust_AddArea" materialDesign:HintAssist.Hint="Area" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox  x:Name="cust_AddCity" materialDesign:HintAssist.Hint="City" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox x:Name="cust_Addnumberphone" materialDesign:HintAssist.Hint="Phone Number" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        <Button  x:Name="cust_Add_Cust" Content="Add a customer" Click="AddCustomerToMain" Height="45" Width="300" VerticalAlignment="Bottom" />
+
+                    </StackPanel>
+
+
+                    <Grid x:Name="CustomerViewer" Visibility="Hidden">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0">
+                            <TextBlock  Text="Customers" HorizontalAlignment="Center" FontSize="25" FontWeight="Bold" />
+                        </StackPanel>
+
+
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+
+                            <ItemsControl ItemsSource="{Binding Numbers}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel x:Name="wrapPanel" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button  Width="80"  Margin="10" Click="btn1_Click" Height="50" FontSize="20" Content="{Binding Number}" FontWeight="Bold" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+
+
+
+                    <ListView Visibility="Hidden" x:Name="lstview" Background="Red" Height="280" Margin="0,10,10.4,0" VerticalAlignment="Top">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</Window>
